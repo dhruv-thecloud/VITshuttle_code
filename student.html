@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIT Student Shuttle Dashboard</title>
+    <meta name="theme-color" content="#17624b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/app-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="student">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="ambient ambient-three" aria-hidden="true"></div>
+    <a href="./driver-login.html" class="corner-driver-link">Driver Login</a>
+    <div class="page-shell">
+      <div class="app-frame">
+        <div class="app-chrome">
+          <div class="brand-lockup">
+            <div class="brand-icon" aria-hidden="true">
+              <svg viewBox="0 0 128 96" class="brand-icon-svg">
+                <rect x="18" y="18" width="92" height="48" rx="16"></rect>
+                <path d="M28 30h30v16H28z"></path>
+                <path d="M66 30h28v16H66z"></path>
+                <path d="M18 48h92"></path>
+                <path d="M40 66v10"></path>
+                <path d="M88 66v10"></path>
+                <circle cx="40" cy="78" r="10"></circle>
+                <circle cx="88" cy="78" r="10"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="eyebrow">VIT Shuttle App</p>
+              <strong>Student Dashboard</strong>
+            </div>
+          </div>
+          <div class="chrome-status">
+            <a href="./index.html" class="ghost-button text-button">Home</a>
+            <span class="chrome-caption">Dedicated student page</span>
+          </div>
+        </div>
+        <header class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">VIT Transport Operations</p>
+            <h1>Track every campus shuttle in a true app-style interface.</h1>
+            <p class="hero-text">
+              Real-time route visibility for students and staff, with a dedicated
+              driver workspace that streams location, auto-calculates ETA, and keeps
+              the shuttle feed synced across campus.
+            </p>
+            <div class="hero-pills" aria-label="App features">
+              <span class="hero-pill">Live shuttle map</span>
+              <span class="hero-pill">Student page</span>
+              <span class="hero-pill">Route ETA</span>
+              <span class="hero-pill">Fare tracking</span>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="device-preview">
+              <div class="device-screen">
+                <div class="device-statusbar">
+                  <span>Campus Live</span>
+                  <span id="live-clock" class="device-clock">--:--</span>
+                </div>
+                <div class="device-brand">
+                  <div class="brand-orbit orbit-one" aria-hidden="true"></div>
+                  <div class="brand-orbit orbit-two" aria-hidden="true"></div>
+                  <div class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 200 140" class="hero-bus-logo">
+                      <defs>
+                        <linearGradient id="busBodyStudent" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#f7f3e9"></stop>
+                          <stop offset="100%" stop-color="#d8e8df"></stop>
+                        </linearGradient>
+                      </defs>
+                      <rect x="28" y="28" width="144" height="64" rx="24" fill="url(#busBodyStudent)"></rect>
+                      <rect x="44" y="44" width="48" height="22" rx="10" fill="#17624b"></rect>
+                      <rect x="100" y="44" width="42" height="22" rx="10" fill="#17624b"></rect>
+                      <path d="M28 68h144" stroke="#17624b" stroke-width="8" stroke-linecap="round"></path>
+                      <path d="M60 92v12M140 92v12" stroke="#17624b" stroke-width="8" stroke-linecap="round"></path>
+                      <circle cx="64" cy="110" r="16" fill="#0f1f1a"></circle>
+                      <circle cx="136" cy="110" r="16" fill="#0f1f1a"></circle>
+                      <circle cx="64" cy="110" r="7" fill="#dfb85a"></circle>
+                      <circle cx="136" cy="110" r="7" fill="#dfb85a"></circle>
+                    </svg>
+                  </div>
+                  <div class="device-notice">
+                    <span class="section-label">Student View</span>
+                    <strong>Shuttle arrival and fare</strong>
+                    <p>Choose a route, track the bus, and see live payment updates.</p>
+                  </div>
+                </div>
+                <div class="signal-card">
+                  <span class="signal-label">Live campus transit board</span>
+                  <p class="signal-time">Connected</p>
+                  <p class="signal-caption">Dedicated student dashboard with real-time shuttle tracking.</p>
+                </div>
+                <div class="stat-grid" id="stat-grid"></div>
+                <div class="device-dock">
+                  <span class="dock-pill active">Student</span>
+                  <span class="dock-pill">Map</span>
+                  <span class="dock-pill">Fare</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="dashboard">
+          <section class="surface role-surface role-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Access Mode</p>
+                <h2 id="role-title">Choose your role</h2>
+              </div>
+            </div>
+            <div class="role-grid">
+              <section class="role-card role-login-card">
+                <span class="section-label">Student Login</span>
+                <strong>Sign in to track shuttle arrival</strong>
+                <form id="student-login-form" class="student-login-form">
+                  <label>
+                    <span>Registration number</span>
+                    <input id="student-regno" name="regno" type="text" placeholder="Example: 22BCE0001" required />
+                  </label>
+                  <label>
+                    <span>Password</span>
+                    <input id="student-password" name="password" type="password" placeholder="Enter password" required />
+                  </label>
+                  <div class="form-actions">
+                    <button type="submit" class="primary-button">Student Login</button>
+                    <a href="./signup.html" class="ghost-button text-button">Student Sign Up</a>
+                    <button type="button" id="student-logout" class="ghost-button is-hidden">Logout</button>
+                  </div>
+                </form>
+                <p id="student-login-status" class="empty-copy">Login is required before the student shuttle screens open.</p>
+              </section>
+              <button type="button" class="role-card driver-entry-card" data-role-choice="driver">
+                <span class="section-label">Driver</span>
+                <strong>Open driver login</strong>
+                <p class="empty-copy">Drivers use their own login page before entering the dashboard.</p>
+              </button>
+            </div>
+            <p id="role-description" class="empty-copy role-description">Select a role to switch the app into the correct transport workflow.</p>
+            <section class="download-surface" aria-label="Mobile app install and download">
+              <article class="download-card">
+                <span class="section-label">Android App</span>
+                <strong id="install-heading">Install on Android</strong>
+                <p id="install-status" class="empty-copy">Open this app in Chrome and tap Install App to place it on the home screen.</p>
+                <button type="button" id="install-app" class="ghost-button install-button is-hidden">Install App</button>
+              </article>
+              <article class="download-card">
+                <span class="section-label">iPhone App</span>
+                <strong>Add to Home Screen</strong>
+                <p id="platform-guide" class="empty-copy">Open this app in Safari, tap Share, then choose Add to Home Screen.</p>
+              </article>
+              <article class="download-card">
+                <span class="section-label">Download Bundle</span>
+                <strong>Offline app package</strong>
+                <p class="empty-copy">Download the packaged build for hosting, sharing, or reinstalling the mobile web app.</p>
+                <a class="download-link" href="https://github.com/dhruv-thecloud/VITshuttle_code/archive/refs/heads/main.zip">Download ZIP</a>
+              </article>
+            </section>
+            <div id="integration-banner" class="integration-banner"></div>
+          </section>
+
+          <section class="surface surface-large" data-role="student">
+            <div class="section-heading">
+              <div>
+                <p class="section-label">User Interface</p>
+                <h2>Choose one of the 2 shuttle routes</h2>
+              </div>
+              <p class="empty-copy compact-copy">Select either the Men's Hostel Shuttle or the Ladies Hostel Shuttle.</p>
+            </div>
+            <div class="content-grid map-enabled">
+              <div>
+                <div id="shuttle-options" class="shuttle-options"></div>
+                <div id="route-list" class="route-list"></div>
+              </div>
+              <div class="detail-column">
+                <section class="map-panel">
+                  <div class="map-header">
+                    <div>
+                      <p class="section-label">VIT Campus Map</p>
+                      <h3 id="map-title">Live campus map</h3>
+                    </div>
+                    <div class="map-legend">
+                      <span><i class="legend-dot stop"></i> Focused stop</span>
+                      <span><i class="legend-dot bus"></i> Selected bus</span>
+                      <a id="map-open-link" class="map-link" href="https://www.google.com/maps?q=Vellore%20Institute%20of%20Technology%2C%20Vellore" target="_blank" rel="noreferrer">Open in Google Maps</a>
+                    </div>
+                  </div>
+                  <div class="map-stage">
+                    <iframe id="campus-map-frame" class="campus-map-frame" title="VIT campus real map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Vellore%20Institute%20of%20Technology%2C%20Vellore&z=16&output=embed"></iframe>
+                  </div>
+                  <div id="map-focus-list" class="map-focus-list"></div>
+                  <p id="map-source-note" class="map-source-note">Real map centered on VIT Vellore campus.</p>
+                </section>
+                <aside class="route-board">
+                  <div class="board-header">
+                    <p class="section-label">Selected route</p>
+                    <h3 id="board-title">Choose a shuttle</h3>
+                  </div>
+                  <div id="board-content" class="board-content">
+                    <p class="empty-copy">Select any bus card to inspect its full route, live ETA, and operational notes.</p>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          <section class="surface" data-role="student">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Map View</p>
+                <h2>Campus route movement overview</h2>
+              </div>
+            </div>
+            <div id="map-insights" class="notification-list">
+              <p class="empty-copy">The map follows the current route filter and highlights the selected bus in the VIT network.</p>
+            </div>
+          </section>
+
+          <section class="surface" data-role="student">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Boarding & Payment</p>
+                <h2>Student shuttle pass</h2>
+              </div>
+            </div>
+            <div class="payment-grid">
+              <article class="payment-card">
+                <span class="meta-label">Fare per boarding</span>
+                <strong>Rs 20</strong>
+                <p class="empty-copy">Each time you enter the shuttle, the fare is added automatically.</p>
+              </article>
+              <article class="payment-card">
+                <span class="meta-label">Total due</span>
+                <strong id="payment-total">Rs 0</strong>
+                <p class="empty-copy" id="payment-meta">No rides recorded yet.</p>
+              </article>
+              <article class="payment-card action">
+                <span class="meta-label">Selected shuttle</span>
+                <strong id="payment-bus">Choose a shuttle</strong>
+                <button type="button" id="board-shuttle" class="primary-button">Enter Shuttle</button>
+              </article>
+            </div>
+            <div class="form-actions student-actions">
+              <button type="button" id="reset-payment" class="ghost-button">Reset Student Money</button>
+              <button type="button" id="clear-notifications" class="ghost-button">Clear Notifications</button>
+            </div>
+            <div id="payment-history" class="notification-list"></div>
+          </section>
+
+          <section class="surface" data-role="driver">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Driver Interface</p>
+                <h2>Drive with auto ETA and sensor seats</h2>
+              </div>
+            </div>
+            <div class="driver-telemetry">
+              <article class="telemetry-card">
+                <span class="meta-label">Driver location</span>
+                <strong id="driver-location-status">Location not started</strong>
+                <p id="driver-location-meta" class="empty-copy">Use device GPS to sync shuttle position with the driver phone.</p>
+              </article>
+              <article class="telemetry-card">
+                <span class="meta-label">Auto ETA</span>
+                <strong id="driver-eta-status">Waiting for route data</strong>
+                <p id="driver-eta-meta" class="empty-copy">Calculated automatically using Google route services or local fallback.</p>
+              </article>
+              <article class="telemetry-card">
+                <span class="meta-label">Seat sensor</span>
+                <strong id="driver-seat-status">Sensor offline</strong>
+                <p id="driver-seat-meta" class="empty-copy">Reads available seats from the shuttle sensor feed when configured.</p>
+              </article>
+            </div>
+            <div id="driver-summary" class="driver-summary">
+              <p class="empty-copy">Select the bus you are driving. ETA is calculated automatically, and seat availability comes from the bus sensor feed.</p>
+            </div>
+            <div class="form-actions driver-actions">
+              <button type="button" id="start-tracking" class="primary-button">Start Live Tracking</button>
+              <button type="button" id="refresh-sensor" class="ghost-button">Refresh Seat Sensor</button>
+            </div>
+            <form id="driver-form" class="driver-form">
+              <label>
+                <span>Shuttle number</span>
+                <input id="shuttle-number-input" name="shuttleNumber" type="text" placeholder="Example: MH-01 or LH-02" />
+              </label>
+              <label>
+                <span>Route</span>
+                <select id="route-select" name="routeId"></select>
+              </label>
+              <label>
+                <span>Current shuttle location</span>
+                <input id="location-output" type="text" readonly />
+              </label>
+              <label>
+                <span>Auto ETA</span>
+                <input id="eta-output" type="text" readonly />
+              </label>
+              <label>
+                <span>Available seats</span>
+                <input id="capacity-output" type="text" readonly />
+              </label>
+              <div class="form-actions full-span">
+                <button type="submit" class="primary-button">Save driver details</button>
+                <button type="button" id="reset-demo" class="ghost-button">Reset demo data</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="surface" data-role="student">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Notifications</p>
+                <h2>Route and bus change feed</h2>
+              </div>
+            </div>
+            <div id="notification-list" class="notification-list"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <template id="route-card-template">
+      <article class="route-card">
+        <button type="button" class="route-card-button">
+          <div class="route-card-top">
+            <div>
+              <p class="route-code"></p>
+              <h3 class="route-name"></h3>
+            </div>
+            <span class="status-pill"></span>
+          </div>
+          <div class="route-meta">
+            <div>
+              <span class="meta-label">ETA</span>
+              <strong class="eta-value"></strong>
+            </div>
+            <div>
+              <span class="meta-label">Next stop</span>
+              <strong class="next-stop-value"></strong>
+            </div>
+            <div>
+              <span class="meta-label">Capacity</span>
+              <strong class="capacity-value"></strong>
+            </div>
+          </div>
+          <p class="route-note"></p>
+        </button>
+      </article>
+    </template>
+
+    <script src="./google-config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

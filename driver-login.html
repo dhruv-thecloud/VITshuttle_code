@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIT Driver Login</title>
+    <meta name="theme-color" content="#17624b" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/app-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="driver-login">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="ambient ambient-three" aria-hidden="true"></div>
+    <a href="./driver-login.html" class="corner-driver-link">Driver Login</a>
+    <div class="page-shell">
+      <div class="app-frame">
+        <div class="app-chrome">
+          <div class="brand-lockup">
+            <div class="brand-icon" aria-hidden="true">
+              <svg viewBox="0 0 128 96" class="brand-icon-svg">
+                <rect x="18" y="18" width="92" height="48" rx="16"></rect>
+                <path d="M28 30h30v16H28z"></path>
+                <path d="M66 30h28v16H66z"></path>
+                <path d="M18 48h92"></path>
+                <path d="M40 66v10"></path>
+                <path d="M88 66v10"></path>
+                <circle cx="40" cy="78" r="10"></circle>
+                <circle cx="88" cy="78" r="10"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="eyebrow">VIT Shuttle App</p>
+              <strong>Driver Access</strong>
+            </div>
+          </div>
+          <div class="chrome-status">
+            <a href="./index.html" class="ghost-button text-button">Student Login</a>
+          </div>
+        </div>
+
+        <header class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">VIT Transport Operations</p>
+            <h1>Driver login for route control.</h1>
+            <p class="hero-text">
+              Use the driver credentials to access the dedicated driver dashboard,
+              publish shuttle updates, and share live route information.
+            </p>
+          </div>
+          <div class="hero-panel">
+            <section class="surface">
+              <div class="section-heading compact">
+                <div>
+                  <p class="section-label">Driver Login</p>
+                  <h2>Open the driver dashboard</h2>
+                </div>
+              </div>
+              <form id="driver-login-form" class="student-login-form">
+                <label>
+                  <span>Driver ID</span>
+                  <input name="driverId" type="text" placeholder="Example: DRV001" required />
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input name="password" type="password" placeholder="Enter password" required />
+                </label>
+                <div class="form-actions">
+                  <button type="submit" class="primary-button">Driver Login</button>
+                  <a href="./index.html" class="ghost-button text-button">Back To Student</a>
+                </div>
+              </form>
+              <p id="driver-login-status" class="empty-copy">
+                Use the separate driver login to access the VIT driver dashboard.
+              </p>
+            </section>
+          </div>
+        </header>
+      </div>
+    </div>
+
+    <script src="./driver-auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "VIT Shuttle Tracker",
+  "short_name": "VIT Shuttle",
+  "description": "Installable VIT bus tracking app for students and drivers.",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4efe6",
+  "theme_color": "#17624b",
+  "categories": ["education", "travel", "navigation"],
+  "icons": [
+    {
+      "src": "./icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/app-icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
