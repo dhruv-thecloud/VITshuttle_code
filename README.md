@@ -2,6 +2,12 @@
 
 This workspace now includes an installable mobile-friendly web app for VIT shuttle operations with separate auth, student, and driver pages.
 
+## Live App
+
+Open the published app at [dhruv-thecloud.github.io/VITshuttle_code](https://dhruv-thecloud.github.io/VITshuttle_code/).
+
+GitHub Pages runs the installable app in local demo mode. Student accounts and ride data are stored in the current browser. The included Python server can be hosted separately when shared accounts, live cross-device GPS, and central sensor data are required.
+
 ## What Changed
 
 - Student mode shows live shuttle location, estimated arrival, available seats, and a boarding charge flow
@@ -20,20 +26,20 @@ This workspace now includes an installable mobile-friendly web app for VIT shutt
 
 ## Main Files
 
-- [`index.html`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/index.html) app UI
-- [`signup.html`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/signup.html) student sign up page
-- [`student.html`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/student.html) student dashboard
-- [`driver-login.html`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/driver-login.html) driver login page
-- [`driver.html`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/driver.html) driver dashboard
-- [`styles.css`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/styles.css) app styling
-- [`app.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/app.js) app logic
-- [`auth.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/auth.js) signup flow logic
-- [`driver-auth.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/driver-auth.js) driver login flow logic
-- [`manifest.webmanifest`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/manifest.webmanifest) installable app manifest
-- [`sw.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/sw.js) service worker
-- [`google-config.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/google-config.js) local integration config
-- [`google-config.example.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/google-config.example.js) config example
-- [`server.py`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/server.py) shared backend and static server
+- [`index.html`](index.html) app UI
+- [`signup.html`](signup.html) student sign up page
+- [`student.html`](student.html) student dashboard
+- [`driver-login.html`](driver-login.html) driver login page
+- [`driver.html`](driver.html) driver dashboard
+- [`styles.css`](styles.css) app styling
+- [`app.js`](app.js) app logic
+- [`auth.js`](auth.js) signup flow logic
+- [`driver-auth.js`](driver-auth.js) driver login flow logic
+- [`manifest.webmanifest`](manifest.webmanifest) installable app manifest
+- [`sw.js`](sw.js) service worker
+- [`google-config.js`](google-config.js) local integration config
+- [`google-config.example.js`](google-config.example.js) config example
+- [`server.py`](server.py) shared backend and static server
 
 ## Run
 
@@ -80,7 +86,7 @@ The generated bundle is:
 
 ## Google And Sensor Integration
 
-Edit [`google-config.js`](/Users/dhruvsharma/Desktop/bus%20shuttle%20project%20/google-config.js) to connect production services:
+Edit [`google-config.js`](google-config.js) to connect production services:
 
 - `googleMapsApiKey`: browser key for Google Maps JavaScript services
 - `routesProxyEndpoint`: backend endpoint that calls Google Routes API securely
